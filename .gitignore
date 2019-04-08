@@ -4,3 +4,5 @@ pom.xml
 .nrepl-port
 /node_modules
 package-lock.json
+/_site
+Gemfile.lock

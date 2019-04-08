@@ -1,4 +1,4 @@
-# Flowgraph
+# Flowgraph [![Clojars Project](https://img.shields.io/clojars/v/com.workiva/flowgraph.svg)](https://clojars.org/com.workiva/flowgraph) [![CircleCI](https://circleci.com/gh/Workiva/flowgraph/tree/master.svg?style=svg)](https://circleci.com/gh/Workiva/flowgraph/tree/master)
 
 <!-- toc -->
 
