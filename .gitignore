@@ -2,3 +2,5 @@
 target/
 pom.xml
 .nrepl-port
+/node_modules
+package-lock.json
