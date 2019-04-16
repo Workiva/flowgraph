@@ -3,6 +3,7 @@
 <!-- toc -->
 
 - [Overview](#overview)
+- [API Documentation](#api-documentation)
 - [A Trivial Example](#a-trivial-example)
 - [Edge Specs](#edge-specs)
   * [transform](#transform)
@@ -26,6 +27,10 @@
 If Flowgraph does not suit your needs, other good libraries that solve similar problems include [core.async](https://github.com/clojure/core.async), [plumatic/plumbing](https://github.com/plumatic/plumbing), and [Onyx](https://github.com/onyx-platform/onyx).
 
 When you submit data to a flowgraph graph, a [tesserae](https://github.com/Workiva/tesserae) is returned. Revoking this tesserae before it is fulfilled will cause the task to be skipped and, if the graph is currently processing that job, an attempt will be made [to interrupt the threads and short-circuit execution](test/flowgraph/revoke_test.clj).
+
+## API Documentation
+
+[Clojure API documentation can be found here.](/documentation/clojure/index.html)
 
 ## A Trivial Example
 
