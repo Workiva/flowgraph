@@ -1,4 +1,4 @@
-(defproject com.workiva/flowgraph "0.1.0"
+(defproject com.workiva/flowgraph "0.1.1"
   :description "A Clojure library for fast, concurrent, asynchronous data processing using directed graphs."
   :url "https://github.com/Workiva/flowgraph"
   :license {:name "Apache License, Version 2.0"}
