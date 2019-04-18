@@ -7,7 +7,7 @@
             [lein-codox "0.10.3"]]
   :dependencies [[backtick "0.3.4"]
                  [com.stuartsierra/component "0.3.2"]
-                 [com.workiva/recide "1.0.0"]
+                 [com.workiva/recide "1.0.1"]
                  [com.workiva/tesserae "1.0.0"]
                  [com.workiva/utiliva "0.1.0"]
                  [manifold "0.1.6"]
