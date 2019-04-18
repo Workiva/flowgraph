@@ -17,6 +17,8 @@
 
   :deploy-repositories {"clojars"
                         {:url "https://repo.clojars.org"
+                         :username :env/clojars_username
+                         :password :env/clojars_password
                          :sign-releases false}}
 
   :source-paths      ["src"]
@@ -24,9 +26,19 @@
 
   :global-vars {*warn-on-reflection* true}
 
-  :aliases {"docs" ["do" "clean-docs," "codox"]
+  :aliases {"docs" ["do" "clean-docs," "with-profile" "docs" "codox"]
             "clean-docs" ["shell" "rm" "-rf" "./documentation"]}
 
-  :codox {:output-path "documentation"}
+  :codox {:metadata {:doc/format :markdown}
+          :themes [:rdash]
+          :html {:transforms [[:title]
+                              [:substitute [:title "Flowgraph API Docs"]]
+                              [:span.project-version]
+                              [:substitute nil]
+                              [:pre.deps]
+                              [:substitute [:a {:href "https://clojars.org/com.workiva/flowgraph"}
+                                            [:img {:src "https://img.shields.io/clojars/v/com.workiva/flowgraph.svg"}]]]]}
+          :output-path "documentation"}
 
-  :profiles {:dev               [{:dependencies      [[criterium "0.4.3"]]}]})
+  :profiles {:dev [{:dependencies [[criterium "0.4.3"]]}]
+             :docs {:dependencies [[codox-theme-rdash "0.1.2"]]}})

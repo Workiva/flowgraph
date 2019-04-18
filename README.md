@@ -1,5 +1,26 @@
 # Flowgraph
 
+<!-- toc -->
+
+- [Overview](#overview)
+- [A Trivial Example](#a-trivial-example)
+- [Edge Specs](#edge-specs)
+  * [transform](#transform)
+  * [discriminate](#discriminate)
+  * [duplicate](#duplicate)
+  * [fuse](#fuse)
+  * [commix](#commix)
+- [Optional Edge Flags](#optional-edge-flags)
+- [Node Specs](#node-specs)
+- [More Complex Examples](#more-complex-examples)
+- [Maintainers and Contributors](#maintainers-and-contributors)
+  * [Active Maintainers](#active-maintainers)
+  * [Previous Contributors](#previous-contributors)
+
+<!-- tocstop -->
+
+## Overview
+
 **Flowgraph** is a Clojure library for fast, concurrent, asynchronous data processing using directed graphs. Flowgraph supports cyclic graphs. Though it is not distributed, it does have primitive tools for minimizing communication overhead in the event that some processing steps involve calls to distributed resources. You can also easily prioritize some edges over others, or even prioritize the processing of some data based on any characteristic you choose.
 
 If Flowgraph does not suit your needs, other good libraries that solve similar problems include [core.async](https://github.com/clojure/core.async), [plumatic/plumbing](https://github.com/plumatic/plumbing), and [Onyx](https://github.com/onyx-platform/onyx).
@@ -171,13 +192,13 @@ The default value is simply `false`.
                         :priority 2)})
 ```
 
-# Maintainers and Contributors
+## Maintainers and Contributors
 
-## Active Maintainers
+### Active Maintainers
 
 -
 
-## Previous Contributors
+### Previous Contributors
 
 - Timothy Dean <galdre@gmail.com>
 - Aleksandr Furmanov <aleksandr.furmanov@workiva.com>
