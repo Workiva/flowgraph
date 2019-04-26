@@ -1,11 +1,11 @@
 ;; Copyright 2016-2019 Workiva Inc.
-;; 
+;;
 ;; Licensed under the Apache License, Version 2.0 (the "License");
 ;; you may not use this file except in compliance with the License.
 ;; You may obtain a copy of the License at
-;; 
+;;
 ;;     http://www.apache.org/licenses/LICENSE-2.0
-;; 
+;;
 ;; Unless required by applicable law or agreed to in writing, software
 ;; distributed under the License is distributed on an "AS IS" BASIS,
 ;; WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -25,7 +25,7 @@
             [backtick]
             [clojure.tools.macro :refer [symbol-macrolet]]
             [flowgraph.signal :refer [simple-signaller]])
-  (:import [java.util.concurrent Executors ExecutorService]
+  (:import [java.util.concurrent Executors ExecutorService ThreadFactory]
            [java.lang Runtime])
   (:refer-clojure :exclude [pmap]))
 
@@ -35,6 +35,18 @@
   (let [type-priority (zipmap [:commix :fuse :duplicate :discriminate :transform] (range))]
     (compare (type-priority (:type e1)) (type-priority (:type e2)))))
 (def edge-comparator (compare-comp commix>fuse>duplicate>discriminate>transform >priority))
+
+(def ^:private thread-counters (atom {}))
+
+(defn- thread-factory [name]
+  (proxy [ThreadFactory] []
+    (newThread [^Runnable r]
+      (Thread. r (str "flowgraph/"
+                      name
+                      "-"
+                      (get
+                       (swap! thread-counters update-in (vector name) (fnil inc 0))
+                       name))))))
 
 (defn flowgraph
   ([edge-specs]
@@ -64,7 +76,7 @@
                                           :n-threads (or num-threads *thread-capacity*)
                                           :signaller (simple-signaller)
                                           :active-thread-count (atom 0)
-                                          :executor (Executors/newCachedThreadPool)
+                                          :executor (Executors/newCachedThreadPool (thread-factory graph-name))
                                           :constructors {:vertices vertex-constructors
                                                          :edges edge-constructors}
                                           :item-countdown (atom 0)
